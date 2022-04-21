@@ -1,0 +1,7 @@
+User: Mark, Phone: +12433234672634 Date: 2022-04-05 Master: 3
+User: Mark, Phone: +12433234672634 Date: 2022-04-05 Master: Gus Fring
+User: Mark, Phone: +12433234672634 Date: 2022-04-05 Master: Gus Fring
+User: Mark, Phone: +137468236478 Date: 2022-04-01 Master: Choice the master
+User: Mark, Phone: +137468236478 Date: 2022-04-01 Master: Choice the master
+User: Mark, Phone: +137468236478 Date: 2023-02-04 Master: Gus Fring Color: #e1e1e1
+User: Mark, Phone: +123432428 Date: 2002-02-23 Master: Walter White Color: #7bd148
