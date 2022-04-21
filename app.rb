@@ -25,14 +25,14 @@ post '/visit' do
 	@user_name = params[:user_name]
 	@phone = params[:phone]
 	@date = params[:date]
-	@selected = params[:selected]
+	@barber = params[:barber]
 	@colorpicker = params[:colorpicker]
 
 	hh = {
 		:user_name => 'Enter the name',
 		:phone => 'Enter the phone',
 		:date => 'Enter the date',
-		:selected => 'Enter the master',
+		:barber => 'Enter the master',
 		:colorpicker => 'Enter the color'
 	}
 
@@ -49,10 +49,10 @@ post '/visit' do
 	end
 
 	f = File.open('./public/users.txt', 'a')
-	f.write("User: #{@user_name}, Phone: #{@phone} Date: #{@date} Master: #{@selected} Color: #{@colorpicker}\n")
+	f.write("User: #{@user_name}, Phone: #{@phone} Date: #{@date} Master: #{@barber} Color: #{@colorpicker}\n")
 	f.close
 
-	erb "User: #{@user_name}, Phone: #{@phone} Date: #{@date} Master: #{@selected} Color: #{@colorpicker}"
+	erb "User: #{@user_name}, Phone: #{@phone} Date: #{@date} Master: #{@barber} Color: #{@colorpicker}"
 end
 
 post '/contacts' do
