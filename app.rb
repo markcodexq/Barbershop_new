@@ -1,8 +1,23 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-require 'pony'
 require 'haml'
+require 'sqlite3'
+
+configure do
+	db = get_db()
+	db.execute 'CREATE TABLE IF NOT EXISTS 
+		"Users"
+		(
+			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+			"name" TEXT,
+			"phone" TEXT,
+			"datestamp" TEXT,
+			"barber" TEXT,
+			"color" TEXT
+		)'
+
+end
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"
@@ -48,12 +63,29 @@ post '/visit' do
 		return erb :visit
 	end
 
-	f = File.open('./public/users.txt', 'a')
-	f.write("User: #{@user_name}, Phone: #{@phone} Date: #{@date} Master: #{@barber} Color: #{@colorpicker}\n")
-	f.close
-
+	# f = File.open('./public/users.txt', 'a')
+	# f.write("User: #{@user_name}, Phone: #{@phone} Date: #{@date} Master: #{@barber} Color: #{@colorpicker}\n")
+	# f.close
+	
+	db = get_db()
+	db.execute 'INSERT INTO 
+	Users
+	(
+		name, 
+		phone, 
+		datestamp, 
+		barber, 
+		color
+	) 
+	values( ?, ?, ?, ?, ?)', [@user_name, @phone, @date, @barber, @colorpicker]
+	
 	erb "User: #{@user_name}, Phone: #{@phone} Date: #{@date} Master: #{@barber} Color: #{@colorpicker}"
 end
+
+def get_db
+	return SQLite3::Database.new 'BarberShop.db'
+end
+
 
 post '/contacts' do
 
@@ -71,8 +103,11 @@ post '/contacts' do
 		return erb :contacts
 	end
 
-	f = File.open('./public/contacts.txt', 'a')
-	f.write("Email: #{@email}, Message: #{@message}\n")
-	f.close
+	# f = File.open('./public/contacts.txt', 'a')
+	# f.write("Email: #{@email}, Message: #{@message}\n")
+	# f.close
+
 	erb "Your contact add!"
 end
+
+
